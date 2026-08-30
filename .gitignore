@@ -1,0 +1,9 @@
+# Historical video exports that are not referenced by the current site.
+assets/aigc/aigc-film-01-v2.mp4
+assets/aigc/aigc-film-01-v3.mp4
+assets/aigc/coward-protocol.mp4
+
+# Local editor and OS files.
+.DS_Store
+Thumbs.db
+.vscode/

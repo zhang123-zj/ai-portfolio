@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="面向 AI 数据、模型评测与训练方向的个人作品集。">
+  <title>AI Portfolio · Your Name</title>
+  <link rel="preconnect" href="https://miaoda.feishu.cn">
+  <link href="https://miaoda.feishu.cn/fonts/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@900&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero-scroll" id="home" aria-label="AI portfolio introduction">
+      <div class="hero-viewport">
+        <div class="bg-wrapper" id="bgWrapper" aria-hidden="true">
+          <video id="v1" src="https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/202606101700_hglz7q.mp4" preload="metadata" muted playsinline></video>
+          <video id="v2" src="https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/202606101702_sd50y0.mp4" preload="metadata" muted playsinline></video>
+          <video id="v3" src="https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/cloudinarry%20to%20cloudflare/202606101703_jmidj2.mp4" preload="metadata" muted playsinline></video>
+          <canvas id="mainCanvas"></canvas>
+          <div class="bg-fallback"></div>
+        </div>
+        <div class="hero-vignette" aria-hidden="true"></div>
+
+        <a class="brand" id="brandHeader" href="#home" aria-label="Back to top">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.2"></circle>
+            <path d="M11 26c7-13 18-14 26-8M12 31c8 3 18 2 25-7M19 10c8 6 12 15 10 27" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+            <circle cx="24" cy="24" r="3" fill="currentColor"></circle>
+          </svg>
+          <span>Model / Mind</span>
+        </a>
+
+        <header class="hero-nav" id="heroNav">
+          <nav class="nav-desktop" aria-label="Primary navigation">
+            <a href="#about">关于我</a>
+            <a href="#projects">项目经历</a>
+            <a href="#works">AI 作品</a>
+            <a href="#experience">工作经历</a>
+            <a href="#contact">联系我</a>
+          </nav>
+          <button class="menu-button" id="menuButton" type="button" aria-label="打开菜单" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </header>
+
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+          <nav aria-label="Mobile navigation">
+            <a href="#about">关于我</a>
+            <a href="#projects">项目经历</a>
+            <a href="#works">AI 项目作品</a>
+            <a href="#experience">工作经历</a>
+            <a href="#skills">技能</a>
+            <a href="resume.html">在线简历</a>
+            <a href="#contact">联系我</a>
+          </nav>
+        </div>
+
+        <article class="hero-card" id="heroCard">
+          <p class="eyebrow">AI DATA · EVALUATION · AUTOMATION</p>
+          <h1><span class="title-line">让评测有标准，</span><span class="title-line">让优化有方向。</span></h1>
+          <p class="hero-copy">面向 AI 数据、模型评测与训练支持岗位，专注把模糊问题拆成可执行的标准、流程与数据资产。</p>
+          <div class="availability"><span></span> Open to AI opportunities</div>
+          <button class="round-cta" id="heroCta" type="button" aria-label="继续探索">
+            <svg viewBox="0 0 40 24" fill="none" aria-hidden="true"><path d="M29.5 4.5 37 12m0 0-7.5 7.5M37 12H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </article>
+
+        <div class="hero-statements" id="heroStatements">
+          <p data-statement="0">我把复杂需求转译成一套<span>可执行标准</span>，让团队知道什么是“好”。</p>
+          <p data-statement="1">我从数据与结果中发现<span>真实问题</span>，而不是停在模型分数表面。</p>
+          <p data-statement="2">我用流程、工具与复盘构建<span>稳定交付</span>，让经验可以被复用。</p>
+        </div>
+
+        <div class="hero-exit" id="heroExit">
+          <p class="eyebrow">SCROLL TO PORTFOLIO</p>
+          <h2>项目不是清单，<br>而是<span>问题被解决的证据。</span></h2>
+          <a href="#projects">查看项目</a>
+        </div>
+
+        <div class="loading" id="loadingScreen">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28"></circle><circle cx="32" cy="32" r="28"></circle></svg>
+          <p>Loading portfolio</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="portfolio-content" id="portfolioContent">
+      <header class="content-nav">
+        <a class="content-brand" href="#home">Model / Mind</a>
+        <nav aria-label="Portfolio navigation">
+          <a href="#about">关于</a><a href="#projects">项目</a><a href="#works">作品</a><a href="#experience">经历</a><a href="#skills">技能</a><a href="resume.html">简历</a>
+        </nav>
+        <a class="nav-contact" href="#contact">联系我</a>
+      </header>
+
+      <section class="section about-section reveal" id="about">
+        <div class="section-kicker"><span>ABOUT</span><span>01</span></div>
+        <div class="about-grid">
+          <h2>我关注的不只是模型是否可用，而是问题能否被<span>真正定位</span>。</h2>
+          <div class="about-copy">
+            <p class="lead">你好，我是<strong>张彩娟</strong>，一名有多模态模型评测经验的 AI 训练师。</p>
+            <p>从需求理解、规则拆解、评测集构建，到评测执行、质检复核与 Bad Case 归因，我更关注如何把模型问题定位清楚，并将高频问题与典型 Case 沉淀为评测结论，为后续模型优化和训练数据补充提供参考。</p>
+            <div class="goal-row">
+              <div><span>求职方向</span><strong>AI 训练师 / 模型评测</strong></div>
+              <div><span>职业目标</span><strong>成为兼具模型评测、数据质量与项目交付能力的 AI 训练师</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects">
+        <div class="section-kicker reveal"><span>SELECTED PROJECTS</span><span>02</span></div>
+        <div class="section-heading reveal">
+          <h2>项目经历</h2>
+          <p>点击任一项目，查看从背景到结果的完整拆解。</p>
+        </div>
+        <div class="project-list">
+          <button class="project-row reveal" type="button" data-project="t2v">
+            <span class="project-no">01</span>
+            <span class="project-main"><strong>T2V 音视频生成模型评测</strong><small>GSB · EDUCATION ANIMATION · DIFY</small></span>
+            <span class="project-role">评测规则 / 数据扩充 / 标注管理</span>
+            <span class="project-year">VIDEO</span>
+            <span class="project-arrow">↗</span>
+          </button>
+          <button class="project-row reveal" type="button" data-project="tts">
+            <span class="project-no">02</span>
+            <span class="project-main"><strong>TTS 语音模型评测</strong><small>PRONUNCIATION · PROSODY · VOICE QA</small></span>
+            <span class="project-role">评分标准 / 结果复核 / 报告</span>
+            <span class="project-year">VOICE</span>
+            <span class="project-arrow">↗</span>
+          </button>
+          <button class="project-row reveal" type="button" data-project="vqa">
+            <span class="project-no">03</span>
+            <span class="project-main"><strong>多模态 VQA 评测</strong><small>EDUCATION VQA · BENCHMARK · OCR</small></span>
+            <span class="project-role">评测集 / 数据校验 / 边界补充</span>
+            <span class="project-year">VISION</span>
+            <span class="project-arrow">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section works-section" id="works">
+        <div class="section-kicker reveal"><span>AI PRACTICE ARCHIVE</span><span>03</span></div>
+        <div class="section-heading reveal"><h2>AIGC 作品集</h2><p>把能力拆成可查看、可讨论、可复用的工作样本。</p></div>
+        <div class="work-grid">
+          <button class="work-card aigc-case-card reveal" type="button" data-aigc-case="bamboo-hero" aria-label="查看《竹影小侠》AIGC 视频作品详情">
+            <div class="work-visual aigc-video-visual">
+              <video class="work-card-video" muted loop playsinline preload="metadata" poster="assets/aigc/aigc-film-01-poster.jpg">
+                <source src="assets/aigc/aigc-film-01-cropped.mp4" type="video/mp4">
+              </video>
+              <span class="video-scrim" aria-hidden="true"></span>
+              <span class="video-index">FILM 01 / 2026</span>
+              <span class="video-play" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19"></circle><path d="M17 13.5 28 20l-11 6.5z"></path></svg></span>
+              <span class="video-open">VIEW CASE ↗</span>
+            </div>
+            <p>AIGC VIDEO</p>
+            <h3>《竹影小侠》</h3>
+            <span>角色设定 / 场景构建 / 视频生成</span>
+          </button>
+          <button class="work-card aigc-case-card aigc-preview-card reveal" type="button" data-video-preview data-video-src="assets/aigc/aigc-film-02-deep-sea.mp4" data-video-poster="assets/aigc/aigc-film-02-poster.jpg" data-video-title="《深海寻光》" data-video-index="FILM 02 / 2026" aria-label="播放《深海寻光》AIGC 视频作品">
+            <div class="work-visual aigc-video-visual">
+              <video class="work-card-video" muted loop playsinline preload="metadata" poster="assets/aigc/aigc-film-02-poster.jpg">
+                <source src="assets/aigc/aigc-film-02-deep-sea.mp4" type="video/mp4">
+              </video>
+              <span class="video-scrim" aria-hidden="true"></span>
+              <span class="video-index">FILM 02 / 2026</span>
+              <span class="video-play" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19"></circle><path d="M17 13.5 28 20l-11 6.5z"></path></svg></span>
+              <span class="video-open">PLAY FILM ↗</span>
+            </div>
+            <p>AIGC VIDEO</p>
+            <h3>《深海寻光》</h3>
+            <span>主体设定 / 水下镜头 / 动态生成</span>
+          </button>
+          <button class="work-card aigc-case-card aigc-preview-card reveal" type="button" data-video-preview data-video-src="assets/aigc/aigc-film-03-snow-dance.mp4" data-video-poster="assets/aigc/aigc-film-03-poster.jpg" data-video-title="《雪境齐跃》" data-video-index="FILM 03 / 2026" aria-label="播放《雪境齐跃》AIGC 视频作品">
+            <div class="work-visual aigc-video-visual">
+              <video class="work-card-video" muted loop playsinline preload="metadata" poster="assets/aigc/aigc-film-03-poster.jpg">
+                <source src="assets/aigc/aigc-film-03-snow-dance.mp4" type="video/mp4">
+              </video>
+              <span class="video-scrim" aria-hidden="true"></span>
+              <span class="video-index">FILM 03 / 2026</span>
+              <span class="video-play" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19"></circle><path d="M17 13.5 28 20l-11 6.5z"></path></svg></span>
+              <span class="video-open">PLAY FILM ↗</span>
+            </div>
+            <p>AIGC VIDEO</p>
+            <h3>《雪境齐跃》</h3>
+            <span>动作控制 / 群体一致性 / 节奏生成</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section experience-section" id="experience">
+        <div class="section-kicker reveal"><span>EXPERIENCE</span><span>04</span></div>
+        <div class="experience-grid">
+          <div class="experience-title reveal"><h2>工作经历</h2></div>
+          <div class="timeline">
+            <article class="timeline-item reveal">
+              <div class="timeline-meta"><span>2025.06 — 2026.07</span><span>AI TRAINER</span></div>
+              <h3>作业帮 · AI 训练师</h3>
+              <p>参与教育场景大模型训练数据建设及多模态评测，覆盖 T2V 视频生成模型评测、TTS 语音模型评测、多模态 VQA 评测、图片 Caption 描述以及 SFT 数据训练等项目。</p>
+              <p>负责任务实时进度把控、日常 BPO 管理、Case 收集与质检复核，参与完善规则文档、评测标准及 QA 文档；维护可视化数据看板，跟踪任务进度、准确率及质检结果，并参与评测报告部分撰写。</p>
+            </article>
+            <article class="timeline-item reveal">
+              <div class="timeline-meta"><span>2024.06 — 2025.05</span><span>EDUCATION BUSINESS</span></div>
+              <h3>作业帮 · 教育业务岗位</h3>
+              <p>负责教育业务数据处理、内容审核及质量检查，完成异常识别与问题反馈，保障数据处理质量。</p>
+              <p>负责日常任务数据统计、异常问题整理及返修跟踪，及时反馈审核问题并协助统一规则。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section skills-section" id="skills">
+        <div class="section-kicker reveal"><span>CAPABILITY MATRIX</span><span>05</span></div>
+        <div class="section-heading reveal"><h2>技能与工具</h2><p>能力不是关键词堆叠，而是能在项目流程中被调用的工作模块。</p></div>
+        <div class="skill-marquee" aria-label="Skills"><div>模型评测 · 数据标注 · 数据清洗 · SFT · Prompt Engineering · 多模态数据 · Rubric · Badcase 分析 · Python · API · JSON · Codex · VS Code · Dify · GitHub · 模型评测 · 数据标注 · 数据清洗 · SFT · Prompt Engineering · 多模态数据 · Rubric · Badcase 分析 · Python · API · JSON · Codex · VS Code · Dify · GitHub ·</div></div>
+        <div class="skill-groups">
+          <article class="reveal"><span>01</span><h3>评测与分析</h3><p>模型评测、Rubric、Pairwise、Badcase 分析、结果归因</p></article>
+          <article class="reveal"><span>02</span><h3>数据与训练</h3><p>数据标注、数据清洗、SFT、多模态数据、质量抽检</p></article>
+          <article class="reveal"><span>03</span><h3>工程与自动化</h3><p>Python、API、JSON、Dify、Codex、GitHub、VS Code</p></article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="contact-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="eyebrow reveal">LET'S BUILD SOMETHING RELIABLE</p>
+        <h2 class="reveal">如果你正在寻找一位<br>能把 AI 项目<span>做细、做实、做完</span>的人。</h2>
+        <footer><span>AI PORTFOLIO · 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
+      </section>
+    </div>
+  </main>
+
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+    <button class="dialog-close" id="dialogClose" type="button" aria-label="关闭项目详情">×</button>
+    <div class="dialog-scroll">
+      <div class="dialog-hero"><p class="eyebrow" id="dialogMeta"></p><h2 id="dialogTitle"></h2><p id="dialogIntro"></p></div>
+      <div class="dialog-grid" id="dialogGrid"></div>
+      <div class="dialog-tools" id="dialogTools"></div>
+    </div>
+  </dialog>
+
+  <dialog class="aigc-dialog" id="aigcDialog" aria-labelledby="aigcDialogTitle">
+    <button class="dialog-close aigc-dialog-close" id="aigcDialogClose" type="button" aria-label="关闭 AIGC 作品详情">×</button>
+    <div class="aigc-dialog-scroll">
+      <header class="aigc-dialog-header">
+        <div>
+          <p class="eyebrow">AIGC VIDEO · FILM 01</p>
+          <h2 id="aigcDialogTitle">《竹影小侠》</h2>
+        </div>
+        <p>从角色设定、环境氛围到动态镜头的完整生成档案。</p>
+      </header>
+
+      <div class="aigc-player-shell">
+        <video id="aigcCaseVideo" controls playsinline preload="metadata" poster="assets/aigc/aigc-film-01-poster.jpg">
+          <source src="assets/aigc/aigc-film-01-cropped.mp4" type="video/mp4">
+          当前浏览器不支持视频播放。
+        </video>
+        <div class="aigc-player-meta"><span>GENERATED VIDEO</span><span>播放进度会自动保留</span></div>
+      </div>
+
+      <section class="aigc-prompt-section" aria-labelledby="promptTitle">
+        <div class="aigc-section-heading">
+          <p class="eyebrow">CREATIVE PROMPT</p>
+          <h3 id="promptTitle">创作提示词</h3>
+          <p>将整体视觉、主体动作与分镜节奏拆成可执行的生成约束。</p>
+        </div>
+        <div class="prompt-foundation">
+          <article><span>视觉目标</span><p>超写实，电影级水下动作流畅，4K。</p></article>
+          <article><span>主体</span><p>一只胖乎乎的橘猫，圆滚滚的身体，毛茸茸的毛皮，以平稳而活跃的姿势向前游动和漂移，表情警惕而好奇。</p></article>
+          <article><span>环境</span><p>清澈的蓝色海洋，充满活力的珊瑚礁，热带鱼群，水下颗粒，深度层次。</p></article>
+          <article><span>灯光</span><p>来自海面的强烈阳光，动态光束，珊瑚和猫身上移动的光影。</p></article>
+        </div>
+        <div class="prompt-scenes">
+          <article><span>SCENE 01 · 0—3S</span><h4>广角镜头</h4><p>摄像机以稳定速度穿过珊瑚礁，鱼群迅速游过；猫从侧面进入画面，加入向前游动的队伍。</p></article>
+          <article><span>SCENE 02 · 3—7S</span><h4>跟踪镜头</h4><p>摄像机跟随猫在珊瑚礁中前进，鱼群围绕着它动态地散开又聚集，植物随着水流加速摇摆。</p></article>
+          <article><span>SCENE 03 · 7—11S</span><h4>动作时刻</h4><p>猫稍微加速，游过狭窄的珊瑚通道；气泡在其后方拖尾，颗粒移动更快。一只海龟平稳地穿过路径，增加尺度感。</p></article>
+          <article><span>SCENE 04 · 11—15S</span><h4>结尾镜头</h4><p>猫向上游向更明亮的光线，摄像机向上倾斜并跟随；光线增强，以强烈的电影感光辉结束。</p></article>
+        </div>
+        <dl class="prompt-specs">
+          <div><dt>风格</dt><dd>高端电影写实，自然而充满活力的运动，无慢动作。</dd></div>
+          <div><dt>摄像机</dt><dd>平稳的前进运动，跟踪，轻微的倾斜和方向移动。</dd></div>
+          <div><dt>运动</dt><dd>连续流畅，活跃的游泳，鱼群动态反应，气泡拖尾。</dd></div>
+          <div><dt>音频</dt><dd>流水声，气泡声，微妙的电影感上升。</dd></div>
+          <div class="negative"><dt>负面</dt><dd>慢动作，滞后运动，模糊，故障，变形的猫，卡通风格。</dd></div>
+        </dl>
+      </section>
+
+      <section class="aigc-assets-section" aria-labelledby="assetsTitle">
+        <div class="aigc-section-heading">
+          <p class="eyebrow">VISUAL DEVELOPMENT</p>
+          <h3 id="assetsTitle">角色与场景参考</h3>
+          <p>五张素材按角色设定、环境氛围和关键帧顺序归档。</p>
+        </div>
+        <div class="aigc-gallery">
+          <figure class="landscape"><img src="assets/aigc/character-yellow.png" alt="黄色斗笠角色的三视图与材质设定" loading="lazy"><figcaption><span>01</span>主角设定</figcaption></figure>
+          <figure class="landscape"><img src="assets/aigc/character-ninja.png" alt="黑衣忍者角色的三视图与材质设定" loading="lazy"><figcaption><span>02</span>对手设定</figcaption></figure>
+          <figure><img src="assets/aigc/bamboo-moon.png" alt="月夜竹林的环境氛围图" loading="lazy"><figcaption><span>03</span>环境氛围</figcaption></figure>
+          <figure><img src="assets/aigc/scene-keyframe-01.png" alt="竹林中主角与两名忍者对峙的场景关键帧" loading="lazy"><figcaption><span>04</span>场景关键帧</figcaption></figure>
+          <figure><img src="assets/aigc/scene-keyframe-02.png" alt="月夜竹林中的动态打斗场景关键帧" loading="lazy"><figcaption><span>05</span>动作关键帧</figcaption></figure>
+        </div>
+      </section>
+    </div>
+  </dialog>
+
+  <dialog class="video-preview-dialog" id="videoPreviewDialog" aria-labelledby="videoPreviewTitle">
+    <button class="dialog-close video-preview-close" id="videoPreviewClose" type="button" aria-label="关闭视频预览">×</button>
+    <div class="video-preview-shell">
+      <header>
+        <p class="eyebrow" id="videoPreviewMeta">AIGC VIDEO</p>
+        <h2 id="videoPreviewTitle"></h2>
+      </header>
+      <video id="videoPreviewPlayer" controls playsinline preload="metadata"></video>
+    </div>
+  </dialog>
+
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
