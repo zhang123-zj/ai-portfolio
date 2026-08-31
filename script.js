@@ -49,13 +49,15 @@ const projectData = {
 const hero = document.querySelector(".hero-scroll");
 const bgWrapper = document.getElementById("bgWrapper");
 const canvas = document.getElementById("mainCanvas");
-const context = canvas.getContext("2d", { alpha: false });
+const context = canvas.getContext("2d");
 const videos = [document.getElementById("v1"), document.getElementById("v2"), document.getElementById("v3")];
 const durations = [10, 10, 10];
 const ready = [false, false, false];
+const loadingScreen = document.getElementById("loadingScreen");
 let targetProgress = 0;
 let currentProgress = 0;
 let canvasReady = false;
+let firstFrameVisible = false;
 let animationFrame = 0;
 
 function clamp(value, min = 0, max = 1) { return Math.max(min, Math.min(max, value)); }
@@ -83,12 +85,19 @@ function resizeCanvas() {
   canvasReady = true;
 }
 
+function showFirstFrame() {
+  if (firstFrameVisible) return;
+  firstFrameVisible = true;
+  canvas.classList.add("is-ready");
+  window.setTimeout(() => loadingScreen.classList.add("hidden"), 120);
+}
+
 function drawVideoFrame(progress) {
-  if (!canvasReady) return;
+  if (!canvasReady) return false;
   const index = progress < .34 ? 0 : progress < .68 ? 1 : 2;
   const local = index === 0 ? range(progress, 0, .34) : index === 1 ? range(progress, .34, .68) : range(progress, .68, 1);
   const video = videos[index];
-  if (!ready[index] || video.readyState < 2) return;
+  if (!ready[index] || video.readyState < 2) return false;
   const desiredTime = local * Math.max(.1, durations[index] - .08);
   if (!video.seeking && Math.abs(video.currentTime - desiredTime) > .045) {
     try { video.currentTime = desiredTime; } catch (error) { /* Browser will retry on the next frame. */ }
@@ -100,7 +109,13 @@ function drawVideoFrame(progress) {
   const scale = Math.max(cw / vw, ch / vh);
   const dw = vw * scale;
   const dh = vh * scale;
-  try { context.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh); } catch (error) { /* Fallback remains visible. */ }
+  try {
+    context.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    if (index === 0 && progress < .34) showFirstFrame();
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 function updateHero(progress) {
@@ -144,20 +159,31 @@ function updateScroll() {
 }
 
 videos.forEach((video, index) => {
-  const markReady = () => {
+  const updateDuration = () => {
     if (Number.isFinite(video.duration) && video.duration > 0) durations[index] = video.duration;
-    ready[index] = true;
-    if (ready.every(Boolean)) setTimeout(() => document.getElementById("loadingScreen").classList.add("hidden"), 200);
   };
-  video.addEventListener("loadedmetadata", markReady, { once: true });
-  video.addEventListener("canplay", markReady, { once: true });
+  const requestInitialFrame = () => {
+    updateDuration();
+    if (index !== 0 || video.readyState >= 2 || video.seeking) return;
+    try { video.currentTime = Math.min(.08, Math.max(0, video.duration - .08)); } catch (error) { /* The data event will retry. */ }
+  };
+  const markPlayable = () => {
+    updateDuration();
+    ready[index] = true;
+    drawVideoFrame(currentProgress);
+  };
+  video.addEventListener("loadedmetadata", requestInitialFrame, { once: true });
+  video.addEventListener("loadeddata", markPlayable, { once: true });
+  video.addEventListener("canplay", markPlayable, { once: true });
   video.addEventListener("seeked", () => drawVideoFrame(currentProgress));
   video.addEventListener("error", () => {
     ready[index] = false;
-    document.getElementById("loadingScreen").classList.add("hidden");
+    if (index === 0) loadingScreen.classList.add("hidden");
   });
+  if (video.readyState >= 2) markPlayable();
 });
-setTimeout(() => document.getElementById("loadingScreen").classList.add("hidden"), 5500);
+videos[0].load();
+setTimeout(() => loadingScreen.classList.add("hidden"), 8000);
 
 window.addEventListener("resize", resizeCanvas);
 window.addEventListener("scroll", updateScroll, { passive: true });
